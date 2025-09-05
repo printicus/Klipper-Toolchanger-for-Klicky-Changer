@@ -13,7 +13,8 @@ To install this plugin, run the installation script using the following command 
 wget -O - https://raw.githubusercontent.com/printicus/Klipper-Toolchanger-for-Klicky-Changer/main/install.sh | bash
 ```
 
-Then, add the following to your moonraker.conf to enable automatic updates:
+Optional, ad this to your moonraker.conf to enable automatic updates:
+
 ```
 [update_manager klipper-toolchanger]
 type: git_repo
@@ -22,4 +23,10 @@ path: ~/klipper-toolchanger
 origin: https://github.com/printicus/Klipper-Toolchanger-for-Klicky-Changer.git
 managed_services: klipper
 primary_branch: main
+```
+
+If an update has new klipper files, they will not be automatically installed into Klipper. You will need to run the intall script manualy to add them:
+
+```
+bash ~/klipper-toolchanger/install.sh
 ```
