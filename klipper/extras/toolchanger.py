@@ -351,7 +351,8 @@ class Toolchanger:
                 self.run_gcode('after_change_gcode',
                                tool.after_change_gcode, extra_context)
 
-            self._restore_axis(gcode_position, restore_axis, tool)
+#            self._restore_axis(gcode_position, restore_axis, tool)
+            self._restore_axis(gcode_position, restore_axis, tool, extra_z_offset)
 
             self.gcode.run_script_from_command(
                 "RESTORE_GCODE_STATE NAME=_toolchange_state MOVE=0")
@@ -537,10 +538,13 @@ class Toolchanger:
         self.gcode.run_script_from_command(cmd)
         mesh = self.printer.lookup_object('bed_mesh', default=None)
         if mesh and mesh.get_mesh():
+#            self.gcode.run_script_from_command(
+#                'BED_MESH_OFFSET X=%.6f Y=%.6f ZFADE=%.6f' %
+#                (-tool.gcode_x_offset, -tool.gcode_y_offset,
+#                 -tool.gcode_z_offset))
             self.gcode.run_script_from_command(
-                'BED_MESH_OFFSET X=%.6f Y=%.6f ZFADE=%.6f' %
-                (-tool.gcode_x_offset, -tool.gcode_y_offset,
-                 -tool.gcode_z_offset))
+                'BED_MESH_OFFSET X=%.6f Y=%.6f' %
+                (tool.gcode_x_offset, tool.gcode_y_offset))
 
     def _position_to_xyz(self, position, axis):
         result = {}
@@ -566,10 +570,12 @@ class Toolchanger:
             result[INDEX_TO_XYZ[index]] = v
         return result
 
-    def _restore_axis(self, position, axis, tool):
+#    def _restore_axis(self, position, axis, tool):
+    def _restore_axis(self, position, axis, tool, extra_z_offset=0.0):
         if not axis:
             return
-        pos = self._position_with_tool_offset(position, axis, tool)
+#        pos = self._position_with_tool_offset(position, axis, tool)
+        pos = self._position_with_tool_offset(position, axis, tool, extra_z_offset)
         self.gcode_move.cmd_G1(self.gcode.create_gcode_command("G0", "G0", pos))
 
     def run_gcode(self, name, template, extra_context):
