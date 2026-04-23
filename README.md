@@ -2,7 +2,7 @@
 
 ## This is a "very light, bare minimum" copy of Viesturz's Klipper-Toolchanger software
 ## This is/or will be modified to work with my version of a toolchanger, that uses Klicky-Probe as Z-Probe, named Klicky-Changer.
-## Use this page only for the klipper-toolchanger installation, the hardware and configs for Klicky-Changer can be found [here](https://github.com/printicus/Klicky-Changer)
+## Use this page only for the klipper-toolchanger plug-in installation, the hardware and configs for Klicky-Changer can be found [here](https://github.com/printicus/Klicky-Changer)
 
 
 # Installation
