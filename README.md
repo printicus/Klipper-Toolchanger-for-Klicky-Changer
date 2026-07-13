@@ -1,3 +1,5 @@
+13.07.2026 Update to the latest klipper
+
 # klipper-toolchanger for Klicky-Changer
 
 ## This is a "very light, bare minimum" copy of Viesturz's Klipper-Toolchanger software. For a more comprehensive read and a better understanding on how it works, please refer to the original source [here](https://github.com/viesturz/klipper-toolchanger) 
